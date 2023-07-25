@@ -1,0 +1,47 @@
+Der MD2 Algorithmus ist deterministisch, berechnet also für gleiche Eingabewerte 
+gleiche Hashwerte.
+Verschiedene Eingabewerte führen mit Ausnahmen von Kollisionen
+zu unterschiedlichen Ausgaben.
+\\
+Da wir hier mit identischen Ausgaben arbeiten, eignet sich eine Diskussion zu 
+Genauigkeit in diesem Abschnitt nicht.
+
+\subsection{Testfälle}
+Um die Korrektheit unserer Implementierung zu überprüfen, haben wir eine Reihe von Tests
+durchgeführt.
+Dabei haben wir die von uns berechneten Hashwerte mit denen verglichen, die von verschiedenen
+Online-MD2-Rechnern\cite{hashcalculator} erzeugt wurden.
+\\
+Eine normale .txt-Textdatei wird ausgewählt und der Inhalt dieser Datei
+mit unserer Implementierung gehasht.
+Anschließend wird dieselbe Datei auf einem Online-MD2-Rechner hochgeladen und
+die beiden Hashwerte miteinander verglichen.
+Diese Tests sollen sicherstellen, dass unsere Implementierung den Inhalt der
+Textdatei nach MD2
+korrekt hasht.
+
+\subsection{Fehleranalyse}
+Eine vorläufige Implementierung hat nicht zu den gewünschten Ergebnissen geführt.
+Unsere Ergebnisse weichten erheblich von den online generierten Ergebnissen ab.
+Ferner generierten verschiedene Online-MD2-Rechner unterschiedliche Hashwerte, 
+wobei einige mit unseren übereinstimmten.
+
+\subsubsection{Nicht-Text-Dateien}
+MD2 behandelt eine rohe Datei als Texteingabe, was das Hashen anderer Dateitypen 
+erlauben sollte.
+\\
+Wir testeten unsere Implementierung mit verschiedenen Dateiformaten wie .o, 
+.pdf, .png, .tar usw.
+erneut.
+Da aber dann der rohe Inhalt der Datei gehasht wird und nicht nur Text, muss der Inhalt der Datei
+mit \texttt{uint\_8* buf} anstelle von \texttt{char* buf} dargestellt werden.
+Operationen wie \texttt{buf}$[\texttt{len}] = \backslash\texttt{0;}$ können nun 
+ausgelassen werden, da der \texttt{string} Datentyp nicht in Verwendung kommt.
+\\
+Die Leselänge der Quelldatei wird durch die Erstellung der \texttt{stat}-Variablen $statbuf$
+und \texttt{fstat(fileno(file), \&statbuf)} ermittelt \cite{fileIO}.
+\\
+Nach der Verbesserung aller oben beschriebenen Punkte berechnet unser Algorithmus einen
+Hash, der in allen Fällen mit dem Wert des Online-MD2-Rechners übereinstimmt.
+Dies bestätigt die Korrektheit unserer Implementierung und erlaubt uns die Performanz 
+der Implementierung zu testen.

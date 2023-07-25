@@ -1,0 +1,52 @@
+% Diese Zeile bitte -nicht- aendern.
+\documentclass[course=erap]{aspdoc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[numbers,sort&compress]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TODO: Ersetzen Sie in den folgenden Zeilen die entsprechenden -Texte-
+%% mit den richtigen Werten.
+\newcommand{\theGroup}{276} % Beispiel: 42
+\newcommand{\theNumber}{A505} % Beispiel: A123
+\author{Awar Satar \and Yiyang Xie \and Jingjing Yu}
+\date{Sommersemester 2023} % Beispiel: Wintersemester 2019/20
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Diese Zeile bitte -nicht- aendern.
+\title{Gruppe \theGroup{} -- Abgabe zu Aufgabe \theNumber}
+
+\begin{document}
+\maketitle
+
+\section{Einleitung}
+\input{include/einleitung.tex}
+
+
+\section{Lösungsansatz}
+\input{include/loesungsansatz.tex}
+
+
+% TODO: Je nach Aufgabenstellung einen der Begriffe wählen
+% \section{Korrektheit/Genauigkeit}
+\section{Korrektheit}
+\input{include/korrektheit.tex}
+
+\section{Performanzanalyse} 
+\input{include/performanzanalyse.tex}
+
+\goodbreak
+\section{Zusammenfassung und Ausblick}
+\input{include/zusammenfassung.tex}
+
+% TODO: Fuegen Sie Ihre Quellen der Datei Ausarbeitung.bib hinzu
+% Referenzieren Sie diese dann mit \cite{}.
+% Beispiel: CR2 ist ein Register der x86-Architektur~\cite{intel2017man}.
+\bibliographystyle{unsrtnat}
+\bibliography{Ausarbeitung}{}
+
+\end{document}
