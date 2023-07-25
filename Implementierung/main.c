@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     // Variables for command-line arguments and options
     long implementationVersion = 0; // Version of implementation to use (default: 0)
     char *endptr;                   // Pointer for strtol error checking
-    size_t repeat = 1;              // Number of times to repeat the implementation (default: 1)
+    int repeat = 1;                 // Number of times to repeat the implementation (default: 1)
     int timeMeasurementFlag = 0;    // Flag to enable time measurement
     int testFlag = 0;               // Flag to indicate running tests
 
@@ -78,8 +78,9 @@ int main(int argc, char **argv)
             break;
         case 'B':
             // Parsing and validating the repetition number argument
-            repeat = atoi(optarg);
-            if (repeat < 1)
+            errno = 0;
+            repeat = strtol(optarg, &endptr, 10);
+            if (endptr == optarg || *endptr != '\0' || errno == ERANGE || repeat < 1)
             {
                 fprintf(stderr, "Invalid repetition number! Please enter a positive integer after \"-B\" option\n");
                 print_help(progname);
