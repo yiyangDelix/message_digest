@@ -23,7 +23,7 @@ uint8_t *read_file(const char *filePath, size_t *contentLength)
     }
 
     // Check if the file is a regular file and has a valid size
-    if (!S_ISREG(statbuf.st_mode) || statbuf.st_size < 0)
+    if (!S_ISREG(statbuf.st_mode) || statbuf.st_size <= 0)
     {
         fprintf(stderr, "Error by processing file or invalid size! (for MD2: must > 0)\n");
         goto cleanup;
